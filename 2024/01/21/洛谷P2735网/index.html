@@ -9,7 +9,7 @@
     
     <title>
         
-            Linux下QQ音乐闪退 |
+            洛谷P2735 网 |
         
         York&#39;s Blog
     </title>
@@ -177,7 +177,7 @@
         <div class="article-content-container">
 
             <div class="article-title">
-                <span class="title-hover-animation">Linux下QQ音乐闪退</span>
+                <span class="title-hover-animation">洛谷P2735 网</span>
             </div>
 
             
@@ -199,13 +199,13 @@
         
             <i class="fa-regular fa-calendar-plus"></i>&nbsp;
         
-        <span class="pc">2023-09-05 23:33:01</span>
-        <span class="mobile">2023-09-05 23:33</span>
+        <span class="pc">2024-01-21 23:33:01</span>
+        <span class="mobile">2024-01-21 23:33</span>
     </span>
     
         <span class="article-update-date article-meta-item">
         <i class="fas fa-file-pen"></i>&nbsp;
-        <span class="pc">2023-09-06 00:03:09</span>
+        <span class="pc">2024-01-22 15:37:58</span>
     </span>
     
     
@@ -215,7 +215,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Linux/">Linux</a>&nbsp;
+                        <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
                     </li>
                 
             </ul>
@@ -236,16 +236,31 @@
             <div class="article-content keep-markdown-body">
                 
 
-                <h1 id="LInux下QQ音乐闪退的问题"><a href="#LInux下QQ音乐闪退的问题" class="headerlink" title="LInux下QQ音乐闪退的问题"></a>LInux下QQ音乐闪退的问题</h1><p>​    Ubuntu下安装deb版本的QQ音乐会遇到点击图标闪退的问题，解决方法如下：</p>
-<ol>
-<li><p>在终端使用命令 qqmusic —no-sandbox 即可打开</p>
-</li>
-<li><p>上面这种方法不能一劳永逸，那么可以修改desktop配置</p>
-<p>在Exec这行添加 —no-sandbox %U</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /usr/share/applications/qqmusic.desktop</span><br><span class="line"></span><br><span class="line">[Desktop Entry]</span><br><span class="line">Name=qqmusic</span><br><span class="line">Exec=/opt/qqmusic/qqmusic --no-sandbox %U</span><br><span class="line">Terminal=false</span><br><span class="line">Type=Application</span><br><span class="line">Icon=qqmusic</span><br><span class="line">StartupWMClass=qqmusic</span><br><span class="line">Comment=Tencent QQMusic</span><br><span class="line">Categories=AudioVideo;</span><br></pre></td></tr></table></figure>
-<p> <strong><em>如没有生效则重启</em></strong></p>
-</li>
-</ol>
+                <h1 id="洛谷P2735网"><a href="#洛谷P2735网" class="headerlink" title="洛谷P2735网"></a>洛谷P2735网</h1><p><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2735" >原题传送门<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>在本题中，格点是指横纵坐标皆为整数的点。</p>
+<p>为了圈养他的牛，农夫约翰（Farmer John)建造了一个三角形的电网。他从原点（0,0）牵出一根通电的电线，连接格点(n,m)（0&lt;=n<32000,0<m<32000），再连接格点(p,0)（p>0），最后回到原点。</p>
+<p>牛可以在不碰到电网的情况下被放到电网内部的每一个格点上（十分瘦的牛）。如果一个格点碰到了电网，牛绝对不可以被放到该格点之上（或许Farmer John会有一些收获）。那么有多少头牛可以被放到农夫约翰的电网中去呢？</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>输入文件只有一行，包含三个用空格隔开的整数：n,m和p。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出文件只有一行，包含一个整数，代表能被指定的电网包含的牛的数目。</p>
+<h2 id="样例-1"><a href="#样例-1" class="headerlink" title="样例 #1"></a>样例 #1</h2><h3 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入 #1"></a>样例输入 #1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7 5 10</span><br></pre></td></tr></table></figure>
+<h3 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出 #1"></a>样例输出 #1</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20</span><br></pre></td></tr></table></figure>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><h4 id="PICK定理"><a href="#PICK定理" class="headerlink" title="PICK定理"></a>PICK定理</h4><script type="math/tex; mode=display">
+S=a+\frac{b}{2}-1</script><p>​    公式中a表示多边形内部点的个数，b表示多边形边上点的个数，S表示多边形面积。</p>
+<h4 id="扩展欧几里德"><a href="#扩展欧几里德" class="headerlink" title="扩展欧几里德"></a>扩展欧几里德</h4><p>​    在两个整点 A(x1,y1)与B(x2,y2)的线段中经过整点的个数为:</p>
+<script type="math/tex; mode=display">
+gcd(\left |x1-x2 \right |,\left |y1-y2\right | )+1</script><p>Tips:</p>
+<p>gcd(x,y)是x与y的最大公因数。</p>
+<h3 id="分析求解"><a href="#分析求解" class="headerlink" title="分析求解"></a>分析求解</h3><p>​    题目大意就是一个以(0,0)、(p,0)、(n,m)为顶点的三角形内有多少个整点。依据PICK定理，可以得到：</p>
+<script type="math/tex; mode=display">
+b=2S-2a+2</script><p>而三角形面积可以由公式得到：</p>
+<script type="math/tex; mode=display">
+S=p \times n \div 2</script><p>每条边上的整点个数：</p>
+<script type="math/tex; mode=display">
+ \left |p \right |+1</script><script type="math/tex; mode=display">
+gcd(\left|n\right|,\left|m-p\right|)+1</script><script type="math/tex; mode=display">
+gcd(\left|n\right|,\left|m\right|)+1</script><p>所以可以得到答案为：</p>
+<p><code>int ans = m*p/2-(p+1+gcd(n,m)+1+gcd(abs(n-p),m)+1-3)/2+1</code></p>
+<h3 id="最终代码"><a href="#最终代码" class="headerlink" title="最终代码"></a>最终代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n,m,p;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(n,m)</span></span>&#123;<span class="comment">//辗转相除法</span></span><br><span class="line">    <span class="type">int</span> r;</span><br><span class="line">    <span class="keyword">while</span>(n!=<span class="number">0</span>)&#123;</span><br><span class="line">        r = m%n;</span><br><span class="line">        m=n;</span><br><span class="line">        n=r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;n,&amp;m,&amp;p);</span><br><span class="line">    <span class="built_in">ptintf</span>(<span class="string">&quot;%d&quot;</span>,m*p/<span class="number">2</span>-(p+<span class="number">1</span>+<span class="built_in">gcd</span>(n,m)+<span class="number">1</span>+<span class="built_in">gcd</span>(<span class="built_in">abs</span>(n-p),m)+<span class="number">1</span><span class="number">-3</span>)/<span class="number">2</span>+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
             </div>
 
@@ -255,7 +270,7 @@
                 <ul class="post-tags-box">
                     
                         <li class="tag-item">
-                            <a href="/tags/Linux/">#Linux</a>&nbsp;
+                            <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -264,29 +279,14 @@
             
                 <div class="article-nav">
                     
-                        <div class="article-prev">
-                            <a class="prev"
-                               rel="prev"
-                               href="/2023/10/05/%E9%AB%98%E9%80%9A9008%E6%95%91%E7%A0%96/"
-                            >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                                <span class="title flex-center">
-                                <span class="post-nav-title-item">高通9008救砖</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                            </a>
-                        </div>
-                    
                     
                         <div class="article-next">
                             <a class="next"
                                rel="next"
-                               href="/2023/07/13/hello-world/"
+                               href="/2023/10/05/%E9%AB%98%E9%80%9A9008%E6%95%91%E7%A0%96/"
                             >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Hello World</span>
+                                <span class="post-nav-title-item">高通9008救砖</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                                 <span class="right arrow-icon flex-center">
@@ -391,7 +391,7 @@
             <div class="toc-content-container">
                 <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LInux%E4%B8%8BQQ%E9%9F%B3%E4%B9%90%E9%97%AA%E9%80%80%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">LInux下QQ音乐闪退的问题</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B4%9B%E8%B0%B7P2735%E7%BD%91"><span class="nav-text">洛谷P2735网</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B-1"><span class="nav-text">样例 #1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%85%A5-1"><span class="nav-text">样例输入 #1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%87%BA-1"><span class="nav-text">样例输出 #1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-text">前置知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PICK%E5%AE%9A%E7%90%86"><span class="nav-text">PICK定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%B7"><span class="nav-text">扩展欧几里德</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E6%B1%82%E8%A7%A3"><span class="nav-text">分析求解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E4%BB%A3%E7%A0%81"><span class="nav-text">最终代码</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
 
