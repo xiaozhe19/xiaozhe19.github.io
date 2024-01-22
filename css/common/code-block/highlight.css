@@ -110,7 +110,7 @@ pre,
 }
 pre,
 code {
-  font-family: "Source Code Pro", consolas, Menlo;
+  font-family: "monospace";
 }
 code {
   padding: 0.4rem;
