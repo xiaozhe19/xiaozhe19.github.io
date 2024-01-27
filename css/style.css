@@ -1108,7 +1108,7 @@ pre,
 }
 pre,
 code {
-  font-family: "Source Code Pro", consolas, Menlo;
+  font-family: "monospace";
 }
 code {
   padding: 0.4rem;
@@ -1356,7 +1356,7 @@ pre .javascript .function {
   margin-left: 0.2rem;
   font-weight: 600;
   font-size: 0.9rem;
-  font-family: "Source Code Pro", consolas, Menlo;
+  font-family: "monospace";
   color: var(--text-color-3);
 }
 .highlight-container .code-tools-box .tool {
