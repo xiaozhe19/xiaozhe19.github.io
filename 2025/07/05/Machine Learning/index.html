@@ -1,0 +1,1045 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="York">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Machine LearningSupervised Learning learn from data labeled with the right answers  Regression infinite outputs  Linear Regression Model Cost Function  Squared error cost function:  Linear regression">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xiaozhe19">
+<meta property="og:url" content="https://xiaozhe19.github.io/2025/07/05/Machine%20Learning/index.html">
+<meta property="og:site_name" content="xiaozhe19">
+<meta property="og:description" content="Machine LearningSupervised Learning learn from data labeled with the right answers  Regression infinite outputs  Linear Regression Model Cost Function  Squared error cost function:  Linear regression">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191121544.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122797.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122508.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122943.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122789.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122312.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122659.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122572.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510151744152.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510151739663.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510172244555.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510172249247.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510172301038.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510181457528.png">
+<meta property="article:published_time" content="2025-07-05T02:31:38.778Z">
+<meta property="article:modified_time" content="2025-10-19T03:22:48.885Z">
+<meta property="article:author" content="York">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191121544.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>xiaozhe19</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xiaozhe19.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>xiaozhe19</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-05 10:31" pubdate>
+          2025年7月5日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          572 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h1><h2 id="Supervised-Learning"><a href="#Supervised-Learning" class="headerlink" title="Supervised Learning"></a>Supervised Learning</h2><ul>
+<li>learn from data labeled with the right answers</li>
+</ul>
+<h3 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h3><ul>
+<li>infinite outputs</li>
+</ul>
+<h4 id="Linear-Regression-Model"><a href="#Linear-Regression-Model" class="headerlink" title="Linear Regression Model"></a>Linear Regression Model</h4><ul>
+<li><p>Cost Function</p>
+<ul>
+<li>Squared error cost function:<ul>
+<li><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191121544.png" srcset="/img/loading.gif" lazyload alt="image-20250705134220020"></li>
+<li>Linear regression is to find a pair of w, b to make J small enough.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Gradient Descent - Find the best w, b</p>
+<ul>
+<li><p>minimize any function</p>
+</li>
+<li><p>$w &#x3D; w-\alpha \frac{\partial}{\partial w}J(w,b)$</p>
+<ul>
+<li><p>$b &#x3D; b-\alpha \frac{\partial}{\partial w}J(w,b)$</p>
+</li>
+<li><p>$\alpha $ Learning Rate 0-1 control how big one step you go</p>
+</li>
+<li><p><code>dw = (1/m) * np.sum(error * x)</code></p>
+<p><code>db = (1/m) * np.sum(error)</code></p>
+</li>
+</ul>
+</li>
+<li><p>repeat until convergence（收敛）</p>
+</li>
+<li><p>update w and b at same time</p>
+<ul>
+<li><code>temp_w = w-A temp_B=b-A w = temp_w b = temp_b</code></li>
+</ul>
+</li>
+<li><p>there will be more than one local minimum</p>
+<ul>
+<li>but for linear regression  -&gt; only one</li>
+</ul>
+</li>
+<li><p>Learning rate is not always better to make it smaller.</p>
+<ul>
+<li>too small: cant find minimum point within limited steps</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Multiple Feature</p>
+<ul>
+<li><p>$\vec{x}^{(i)}$ features of $i^{th}$ training example</p>
+</li>
+<li><p>Model</p>
+<ul>
+<li>$f_{w,b}(x) &#x3D; w_1x_1+w_2x_2+w_3x_3+b$</li>
+<li>$\vec{w}&#x3D;[w1,w2,w3,…,wn]$</li>
+<li>$\vec{x} &#x3D; [x1,x2,x3,…,xn]$</li>
+<li>$ f_{\vec{w},b}&#x3D;\vec{w}\cdot\vec{x}+b$</li>
+</ul>
+</li>
+<li><p>Vectorization</p>
+<ul>
+<li>makes code shorter and faster</li>
+<li><code>np.dot(x,y)</code> 向量 x, y 的点积</li>
+</ul>
+</li>
+<li><p>Feature Scaling</p>
+</li>
+</ul>
+</li>
+<li><p>Normal equation</p>
+<ul>
+<li>only for linear regression</li>
+<li>solve for w, b without iterations(one time to solve)</li>
+<li>but when number of feature is above 10 000, it will be very slow</li>
+</ul>
+</li>
+<li><p>Feature Scaling</p>
+<ul>
+<li><p>make a range that is comparable, make gradient descent faster.</p>
+</li>
+<li><p>method</p>
+<ul>
+<li><p>divide a number to make features in a same range</p>
+</li>
+<li><p>mean normalization 均值归一化</p>
+<ul>
+<li>find x1’s average -&gt; $\mu_1$<ul>
+<li>$x_1 &#x3D; \frac{x_1-\mu_1}{max(x1)-min(x1)}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Z-Score normalization</p>
+<ul>
+<li>find standard deviation $\sigma$</li>
+<li>$x_1&#x3D;\frac{x_1-\mu_1}{\sigma}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>aim for a range of -1 to 1 for each feature</p>
+</li>
+</ul>
+</li>
+<li><p>Choose Learning Rate</p>
+<ul>
+<li><p>learning curve</p>
+</li>
+<li><p><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122797.png" srcset="/img/loading.gif" lazyload alt="image-20250707113608244"></p>
+</li>
+<li><p>Automatic Convergence Test</p>
+<ul>
+<li>let a $\epsilon$ be 0.001</li>
+<li>if  J decrease less than $\epsilon$ , you can declare J is convergence</li>
+<li>difficult to choose a right epsilon</li>
+</ul>
+</li>
+<li><p>chose a very small number -&gt; debugging step</p>
+</li>
+<li><p>draw J and iterations curve to see where to convergence</p>
+</li>
+</ul>
+</li>
+<li><p>Feature engineering</p>
+<ul>
+<li>combining original features to define some new feature to make model easy to train</li>
+</ul>
+</li>
+</ul>
+<h4 id="Polynomial-Regression"><a href="#Polynomial-Regression" class="headerlink" title="Polynomial Regression"></a>Polynomial Regression</h4><h3 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h3><ul>
+<li>only some outputs</li>
+</ul>
+<h4 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h4><ul>
+<li>sigmoid function<ul>
+<li>$g(z) &#x3D; \frac{1}{1+e^{-z}}$ possibility to output 1</li>
+<li>$z &#x3D; \vec{w}\cdot\vec{x}+b$  and pass z into g(z)</li>
+<li>this is $f_{\vec{w},b}(\vec{x})$, shows the possibility to be positive</li>
+</ul>
+</li>
+<li>decision boundary<ul>
+<li>$z &#x3D; \vec{w}\cdot\vec{x}+b&#x3D;0$</li>
+</ul>
+</li>
+<li>Cost Function<ul>
+<li>Squared error cost is a non-convex function so we should use another type of function</li>
+<li>Logistic Loss Function<ul>
+<li><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122508.png" srcset="/img/loading.gif" lazyload alt="image-20250708103611234"></li>
+</ul>
+</li>
+<li>Simplified version<ul>
+<li>$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)}) &#x3D; -y^{(i)}log(f_{\vec{w},b}(x^{(i)}))-(1-y^{(i)})log(1-f_{\vec{w},b}(x^{(i)}))$</li>
+</ul>
+</li>
+<li>$dw &#x3D; \frac{1}{m}\vec{x}\cdot(\vec{y_{hat}}-\vec{y})$</li>
+<li>$db &#x3D; \frac{1}{m}(\vec{y_{hat}}-\vec{y})$</li>
+</ul>
+</li>
+</ul>
+<h3 id="Overfitting"><a href="#Overfitting" class="headerlink" title="Overfitting"></a>Overfitting</h3><ul>
+<li>overfit</li>
+<li>underft</li>
+<li>method to solve overfitting<ul>
+<li>more data</li>
+<li>if features too many, remove some</li>
+<li>relularization<ul>
+<li>set a parameter to zero is to eliminate a feature</li>
+<li>a way to reduce the influence of soma parameter but not just remove them</li>
+<li>make w1 to wn small to reduce the influence</li>
+<li>make w3 and w4 really small<ul>
+<li>Cost Function+ 1000w3^2+1000w4^2 penalize w3 and w4</li>
+<li>often penalize all ws</li>
+<li>$\frac{\lambda}{2m}\sum w^2_j$</li>
+<li>$\lambda$ regularization parameter choose one you like</li>
+</ul>
+</li>
+<li>gradient descent<ul>
+<li><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122943.png" srcset="/img/loading.gif" lazyload alt="image-20250709162935178"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Advanced-Machine-Learning"><a href="#Advanced-Machine-Learning" class="headerlink" title="Advanced Machine Learning"></a>Advanced Machine Learning</h2><h3 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h3><ul>
+<li>use vectors<ul>
+<li>inputs a vector and output a vector to next lable</li>
+</ul>
+</li>
+</ul>
+<h4 id="Layer-of-Neural-Network"><a href="#Layer-of-Neural-Network" class="headerlink" title="Layer of Neural Network"></a>Layer of Neural Network</h4><ul>
+<li>count layer: not include input layer and include output layer.</li>
+</ul>
+<h4 id="Forward-Propagation"><a href="#Forward-Propagation" class="headerlink" title="Forward Propagation"></a>Forward Propagation</h4><p><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122789.png" srcset="/img/loading.gif" lazyload alt="image-20250712132224153"></p>
+<ul>
+<li>nueral lessen with layer increase -&gt; forward propagation</li>
+</ul>
+<h4 id="Tensor-Flow"><a href="#Tensor-Flow" class="headerlink" title="Tensor Flow"></a>Tensor Flow</h4><ul>
+<li><p>Dense a type of layer</p>
+</li>
+<li><p>Data in Tensor Flow</p>
+<ul>
+<li>In Numpy<ul>
+<li>Array use list in list to show a matrix -&gt; [[1 2 3 ], [4 5 6]]</li>
+</ul>
+</li>
+<li>In Tensor Flow<ul>
+<li>use Matrix to show data</li>
+<li>tf.Tensor([[0.2 0.7 0.3]], shape(1,3), dtype &#x3D; float32) use tensor type to store matrix data</li>
+<li>turn tensor to numpy -&gt; a1.numpy()</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Build a nueral network with tensor flow</p>
+<ul>
+<li><p><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122312.png" srcset="/img/loading.gif" lazyload alt="image-20250712134616313"> normal way</p>
+</li>
+<li><p>create lay1 and then create layer2 all manually</p>
+</li>
+<li><p>but in Tensor Flow, we have a function called sequential ([layer_1, layer_2]), stringing together two layers</p>
+<p><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122659.png" srcset="/img/loading.gif" lazyload alt="image-20250712134846461"> Demand Prediction</p>
+</li>
+</ul>
+</li>
+<li><p>General method of front propogration</p>
+<ul>
+<li><pre><code class="language-python">def dense(a_in,W,b, g): # This is an example of using loop
+    units =  W.shape[1]
+    a_out = np.zeros(units)
+    for j in range(units):
+        w = W[:,j] #Pull out column j of a matrix
+        z = np.dot(w,a_in)+b[j]
+        a_out[j] = g(z) #sigmoid function
+       return a_out
+def sequential(x):
+    a1 = dense(x, W1, b1)
+    a2 = dense(a1, W2, b2)
+    a3 = dense(a2, W3, b3)
+    a4 = dense(a3, W4, b4)
+    f_x = a4
+    return f_x
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><br>- vectorization<br><br>  ```python<br><span class="hljs-title">  def dense(A_in, W, B):</span><br>  	Z = np.matmul(<span class="hljs-built_in">A_in</span>,W) + B #Matrix Multiply<br>      <span class="hljs-built_in">A_out</span> = g(Z)<br>      reuturn <span class="hljs-built_in">A_out</span><br></code></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Train-a-Network-with-TensorFlow"><a href="#Train-a-Network-with-TensorFlow" class="headerlink" title="Train a Network with TensorFlow"></a>Train a Network with TensorFlow</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf<br><span class="hljs-keyword">from</span> tensorflow.keras <span class="hljs-keyword">import</span> Sequential<br><span class="hljs-keyword">from</span> tensorflow.keras.layers <span class="hljs-keyword">import</span> Dense<br><br>model = Sequential([<br>    Dense(units=<span class="hljs-number">25</span>, activation=<span class="hljs-string">&#x27;sigmoid&#x27;</span>)，<br>    Dense(units=<span class="hljs-number">15</span>, activation=<span class="hljs-string">&#x27;sigmoid&#x27;</span>),<br>    Dense(units=<span class="hljs-number">1</span>, activation=<span class="hljs-string">&#x27;sigmoid&#x27;</span>)<br>])<br><span class="hljs-comment"># to compile the model</span><br><span class="hljs-keyword">from</span> tensorflow.keras.losses <span class="hljs-keyword">import</span> BinatyCrossentropy<br><br>model.<span class="hljs-built_in">compile</span>(loss=BinaryCrossentropy)<span class="hljs-comment">#loss function</span><br><br>model.fit(X,Y,epochs=<span class="hljs-number">100</span>)<span class="hljs-comment">#iteration </span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>Training Details<ol>
+<li>Create the model</li>
+<li>Loss and cost function</li>
+<li>Gradient Descent<ul>
+<li>use back propagation to compute the derivative terms</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="Alternative-for-Sigmoid-Function"><a href="#Alternative-for-Sigmoid-Function" class="headerlink" title="Alternative for Sigmoid Function"></a>Alternative for Sigmoid Function</h4><ul>
+<li>for the non-binary situation</li>
+<li>another useful function ReLU<ul>
+<li>if z &lt;0 -&gt; g(z) &#x3D; 0</li>
+<li>if z &gt;&#x3D; 0 -&gt; g(z) &#x3D; z</li>
+<li>g(z) &#x3D; max(0, z)</li>
+</ul>
+</li>
+<li>Choose Activation Function<ul>
+<li>Output Layer</li>
+<li>Binary Classification -&gt; sigmoid function</li>
+<li>Regression problem -&gt; linear</li>
+<li>non-negative result -&gt; ReLU</li>
+<li>Hidden Layers<ul>
+<li>ReLU most used<ul>
+<li>ReLU is faster</li>
+<li>ReLU only goes flat in one direction</li>
+<li>Flat will make gradient descent very slow</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>use activation function in all the node will turn neural network into a linear regression</li>
+<li>use all sigmoid function is to logistic regression</li>
+<li>So we need ReLU to decrease the linear feature of the model to better fit the statics</li>
+</ul>
+<h4 id="Multiclass"><a href="#Multiclass" class="headerlink" title="Multiclass"></a>Multiclass</h4><ul>
+<li>Softmax Regression<ul>
+<li>distinguish z1 z2 z3 z4</li>
+<li>$z_n &#x3D; \vec{w_n}\cdot\vec{x}+\vec{b_n}$</li>
+<li>$a_1 &#x3D; \frac{e^{z_1}}{e^{z^1}+e^{z^2}+e^{z^3}+e^{z^4}}$ Activation</li>
+<li>$Loss &#x3D; L(\vec{a},y) &#x3D; -log a_n if y &#x3D; n$</li>
+<li>Number Roundoff Errors<ul>
+<li>computer only have a limited storage to save numbers</li>
+<li>so some accurate number will be roundoff to make a wrong answer</li>
+<li><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510191122572.png" srcset="/img/loading.gif" lazyload alt="image-20250724150508498"></li>
+<li>so also our way to calculate softmax is right, there will be still some wrong answer</li>
+<li>solution<ul>
+<li>in Tensorflow we can calculate loss function in one time， not predicted function first, then put the answer into loss function.</li>
+<li>model.compile(loss &#x3D; SparseCrossEntropy(from_logistic &#x3D; True)) replace model.compile(loss &#x3D; SparseCatagoricalCrossEntry()) this new command contains softmax regression as output layer, so use linear as output</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Multi-Classes and Multi-Labels<ul>
+<li>Multi-Classes: every example can only belong to one class</li>
+<li>Multi-Labels: every example can have many labels</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Advance-Optimization"><a href="#Advance-Optimization" class="headerlink" title="Advance Optimization"></a>Advance Optimization</h3><h4 id="Adam-Algorithm"><a href="#Adam-Algorithm" class="headerlink" title="Adam Algorithm"></a>Adam Algorithm</h4><ul>
+<li><p>use different learning rate for every parameter</p>
+</li>
+<li><p>if wj or b keeps moving in the same direction:</p>
+<p> increase alpha_j</p>
+<p>if wj or b keeps oscillating:</p>
+<p> reduce alpha_j</p>
+</li>
+<li><p>add a parameter in your code: model.compile(opimizer &#x3D; tf.keras.optimizers.Adam(learning_rate &#x3D; 1e-3))</p>
+</li>
+</ul>
+<h3 id="Additional-Layer-Types"><a href="#Additional-Layer-Types" class="headerlink" title="Additional Layer Types"></a>Additional Layer Types</h3><ul>
+<li>all we use so far is Dense Layer which we put every activation as input into next layer</li>
+</ul>
+<h4 id="Convolutional-Layer"><a href="#Convolutional-Layer" class="headerlink" title="Convolutional Layer"></a>Convolutional Layer</h4><ul>
+<li>Each neuron only look at a part of previous lays’ inputs.</li>
+<li>Why?<ul>
+<li>Faster</li>
+<li>Need less training data (less prone to overfitting)</li>
+</ul>
+</li>
+<li>Convolutional Neural Network</li>
+</ul>
+<h3 id="Evaluate-the-Model"><a href="#Evaluate-the-Model" class="headerlink" title="Evaluate the Model"></a>Evaluate the Model</h3><h4 id="Bias-and-variance"><a href="#Bias-and-variance" class="headerlink" title="Bias and variance"></a>Bias and variance</h4><ul>
+<li><p>Regularization</p>
+<p><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510151744152.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510151739663.png" srcset="/img/loading.gif" lazyload alt="image-20251015173942570"> Loss function of regularization</p>
+<p>后一项是参数惩罚项， 惩罚系数过大 让系数足够小 使得拟合出来的函数平滑 提高泛化能力</p>
+<ul>
+<li>$\lambda$ very large -&gt; keep wj very small -&gt; F(x) &#x3D; b underfit</li>
+<li>$\lambda$ very small -&gt; no regularization -&gt; overfti curve</li>
+</ul>
+</li>
+<li><p>Baseline to evaluate the performance</p>
+<ul>
+<li><p>Example</p>
+<ul>
+<li><p>a voice recognition model</p>
+<p>J train &#x3D; 10.6</p>
+<p>J cv &#x3D; 14.8</p>
+<p>It seems <strong>a bit high</strong></p>
+</li>
+<li><p>But Human accuracy is 10.8</p>
+<p>the model is lower</p>
+<p><strong>so it is still good</strong></p>
+<p><strong>The true problem is Jcv higher than J train, meaning the variance problem</strong></p>
+</li>
+</ul>
+</li>
+<li><p>So it is useful to build a <strong>Baseline Model</strong> to evaluate the performance on <strong>Training set</strong></p>
+</li>
+<li><p>Compare Baseline and J train -&gt; <strong>High Bias</strong></p>
+<p>Compare J train and Jcv -&gt; <strong>High Variance</strong></p>
+</li>
+</ul>
+</li>
+<li><p>Learning Curves</p>
+<p><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510172244555.png" srcset="/img/loading.gif" lazyload alt="image-20251017224451353"></p>
+<p><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510172249247.png" srcset="/img/loading.gif" lazyload alt="High Bias"></p>
+<ul>
+<li>High Bias -&gt; it is useless to enlarge your training set</li>
+<li>Before collecting data, check your bias</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510172301038.png" srcset="/img/loading.gif" lazyload alt="High Variance"></p>
+<ul>
+<li>Tring so well that J train is very low -&gt; overfit</li>
+<li>enlarge training set may help</li>
+</ul>
+</li>
+<li><p>Debug and what to do next</p>
+<p><img src="https://raw.githubusercontent.com/xiaozhe19/picgo/master/202510181457528.png" srcset="/img/loading.gif" lazyload alt="image-20251018145730199"></p>
+</li>
+<li><p>Neural Network and Bias&amp;Variance</p>
+<ul>
+<li>large NN is low Bias -&gt; get more data to fix bias and variance</li>
+<li>large NN with regularization is always good</li>
+</ul>
+</li>
+</ul>
+<h3 id="Process-of-developing-ML"><a href="#Process-of-developing-ML" class="headerlink" title="Process of developing ML"></a>Process of developing ML</h3><h4 id="Iterative-Loop-of-ML"><a href="#Iterative-Loop-of-ML" class="headerlink" title="Iterative Loop of ML"></a>Iterative Loop of ML</h4><ul>
+<li>Choose model</li>
+<li>Train</li>
+<li>Debug</li>
+</ul>
+<h4 id="Error-Analysis"><a href="#Error-Analysis" class="headerlink" title="Error Analysis"></a>Error Analysis</h4><ul>
+<li></li>
+</ul>
+<h1 id="Support-Vector-Machines"><a href="#Support-Vector-Machines" class="headerlink" title="Support Vector Machines"></a>Support Vector Machines</h1>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://xiaozhe19.github.io/2025/07/05/Machine Learning/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>York</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/09/25/%E7%8E%AF%E5%A2%83%E8%AF%84%E4%BB%B7/" title="大气污染控制工程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">大气污染控制工程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
